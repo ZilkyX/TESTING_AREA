@@ -1,4 +1,4 @@
-const ws = new WebSocket('wss://your-heroku-app-name.herokuapp.com');
+const ws = new WebSocket('wss://https://nishoi.github.io/TESTING_AREA/');
 
 ws.onopen = () => {
     console.log('Connected to WebSocket server');
