@@ -1,4 +1,4 @@
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('wss://your-heroku-app-name.herokuapp.com');
 
 ws.onopen = () => {
     console.log('Connected to WebSocket server');
