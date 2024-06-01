@@ -1,17 +1,22 @@
+const express = require('express');
+const http = require('http');
 const WebSocket = require('ws');
 
-const server = new WebSocket.Server({ port: 8080 });
+const app = express();
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
 
-server.on('connection', (ws) => {
+wss.on('connection', (ws) => {
     console.log('New client connected');
     ws.on('message', (message) => {
-        console.log(`Received message: ${message}`);
+        console.log(`Received: ${message}`);
         ws.send(`Echo: ${message}`);
     });
-
     ws.on('close', () => {
         console.log('Client disconnected');
     });
 });
 
-console.log('WebSocket server is running on ws://localhost:8080');
+server.listen(process.env.PORT || 8080, () => {
+    console.log(`Server started on port ${server.address().port}`);
+});
